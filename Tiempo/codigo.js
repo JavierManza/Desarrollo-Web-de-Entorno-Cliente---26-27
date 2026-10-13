@@ -115,3 +115,27 @@ Tiempo.prototype.sumaHora = function (otroTiempo) {
     this.minuto = d.getMinutes();
     this.segundo = d.getSeconds();
 };
+
+console.log("--- 1. PROBANDO CONSTRUCTOR CON PARÁMETROS Y ACTUAL ---");
+var t1 = new Tiempo(2024, 5, 12, 10, 30, 0); // 12 de mayo de 2024, 10:30:00
+var tActual = new Tiempo(0, 0, 0, 0, 0, 0);   // Como todo es 0, coge la fecha/hora actual
+
+console.log("Fecha t1: " + t1.getFechaCompleta() + " - Hora t1: " + t1.getHoraCompleta());
+console.log("Fecha actual: " + tActual.getFechaCompleta() + " - Hora actual: " + tActual.getHoraCompleta());
+
+console.log("\n--- 2. PROBANDO ES BISIESTO ---");
+console.log("¿El año 2024 es bisiesto?: " + t1.esBisiesto()); // true
+var tNoBisiesto = new Tiempo(2023, 1, 1, 0, 0, 0);
+console.log("¿El año 2023 es bisiesto?: " + tNoBisiesto.esBisiesto()); // false
+
+console.log("\n--- 3. PROBANDO COMPARACIONES ---");
+var t2 = new Tiempo(2025, 1, 1, 12, 0, 0); // 1 de enero de 2025
+console.log("¿Es t1 mayor que t2?: " + t1.esMayor(t2));   // false
+console.log("¿Es t1 menor que t2?: " + t1.esMenor(t2));   // true
+console.log("¿Es t1 igual a t1?: " + t1.esIgual(t1));     // true
+
+console.log("\n--- 4. PROBANDO SUMA DE HORA ---");
+console.log("Hora inicial de t1: " + t1.getHoraCompleta());
+var tHorasASumar = new Tiempo(0, 0, 0, 3, 45, 15); // Sumamos 3 horas, 45 min y 15 seg
+t1.sumaHora(tHorasASumar);
+console.log("Hora de t1 tras sumar 3h 45m 15s: " + t1.getHoraCompleta());
